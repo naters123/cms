@@ -5,7 +5,7 @@
                 <h2 class="contactsHeading fw-bold">Contacts</h2>
             </div>
             <div class="pull-right">
-                <button class="btn btn-success contactBtn">New Contact</button>
+                <button routerLink="new" class="btn btn-success contactBtn">New Contact</button>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -13,7 +13,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-xs-12">
-                <cms-contact-item *ngFor="let contactEl of contacts" [contact]="contactEl" (contactSelected)="onSelected(contactEl)"></cms-contact-item>
+                <cms-contact-item *ngFor="let contactEl of contacts" [contact]="contactEl"></cms-contact-item>
             </div>
         </div>
     </div>

@@ -4,7 +4,9 @@
         <cms-contact-list></cms-contact-list>
     </div>
     <div class="col-md-4">
-        <cms-contact-detail *ngIf="selectedContact" [contact]="selectedContact"></cms-contact-detail>
+        <router-outlet></router-outlet>
+        <!-- <cms-contact-detail *ngIf="selectedContact" [contact]="selectedContact"></cms-contact-detail> -->
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-md-1">
+    </div>
 </div>

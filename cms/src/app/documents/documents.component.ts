@@ -18,8 +18,5 @@ export class DocumentsComponent implements OnInit {
       }
       );
   }
-  onSelectedDocument(document: Document): void {
-    this.selectedDocument = document;
-  }
 
 }

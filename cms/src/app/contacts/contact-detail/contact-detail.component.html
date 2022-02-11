@@ -8,10 +8,10 @@
                 <img src="{{contact.imageUrl}}" alt="{{contact.name}}" class="img-responsive margin15L margintop10 marginbot10" style="max-height: 100px;">
             </div>
             <div class="pull-right">
-                <button class="btn btn-danger margin15R margintop40">Delete</button>
+                <button (click)="onDelete()" class="btn btn-danger margin15R margintop40">Delete</button>
             </div>
             <div class="pull-right">
-                <button class="btn btn-primary margin5R margintop40">Edit</button>
+                <button routerLink="edit" class="btn btn-primary margin5R margintop40">Edit</button>
             </div>
             <div class="clearfix"></div>
         </div>
