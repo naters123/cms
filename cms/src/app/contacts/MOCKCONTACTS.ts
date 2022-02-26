@@ -284,7 +284,7 @@ export const MOCKCONTACTS: Contact[] = [
     name: 'Nate Ricks',
     email: 'naters@byui.edu',
     phone: 'PHONE NUMBER',
-    imageUrl: 'THIS IS A URL',
+    imageUrl: '../../assets/images/rigbys.jpg',
     group: null
   }
 ];
