@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Message } from './message.model';
 import { MOCKMESSAGES } from './MOCKMESSAGES';
@@ -19,7 +19,7 @@ export class MessageService {
     const docs = JSON.stringify(this.messages);
     this.http
       .put(
-        'https://documents-e2f7e-default-rtdb.firebaseio.com/messages.json',
+        'http://localhost:3000/messages',
         docs
       )
       .subscribe(response => {
@@ -31,15 +31,15 @@ export class MessageService {
   getDatabaseData() {
     this.http
       .get<Message[]>(
-        "https://documents-e2f7e-default-rtdb.firebaseio.com/messages.json"
+        "http://localhost:3000/messages"
       )
       .subscribe({
         // complete: () => {  },
         error: (error: any) => {
           console.log(error);
         },
-        next: (messages: Message[]) => {
-          this.messages = messages;
+        next: (messages: any) => {
+          this.messages = messages.messages;
           this.maxMessageId = this.getMaxId();
           // this.messages = this.messages.sort(
           //   (current: Message, next: Message) => {
@@ -67,10 +67,29 @@ export class MessageService {
     }
     return null; 
    }
+
    addMessage(message: Message) {
-    this.messages.push(message);
-    this.storeMessages()
-   }
+    if (!message) {
+      return;
+    }
+
+    // make sure id of the new message is empty
+    message.id = '';
+
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+    // add to database
+    this.http.post<{ smessage: string, message: Message }>('http://localhost:3000/messages',
+      message,
+      { headers: headers })
+      .subscribe(
+        (responseData) => {
+          // add new document to documents
+          this.messages.push(responseData.message);
+          this.storeMessages();
+        }
+      );
+  }
    getMaxId(): number {
     let maxId: number = 0;
 
